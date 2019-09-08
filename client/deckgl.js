@@ -28,7 +28,7 @@ fetch('https://raw.githubusercontent.com/uber-common/deck.gl-data/master/example
     [227, 26, 28],
     [177, 0, 38]
   ];
-  
+
   const countyLayer = new deck.GeoJsonLayer({
     id: 'geojson',
     data,
@@ -58,18 +58,20 @@ fetch('https://raw.githubusercontent.com/uber-common/deck.gl-data/master/example
 		container: 'deckgl-graph-01',
     mapboxApiAccessToken: 'pk.eyJ1IjoidWJlcmRhdGEiLCJhIjoiY2pudzRtaWloMDAzcTN2bzN1aXdxZHB5bSJ9.2bkj3IiRC8wj3jLThvDGdA',
     mapStyle: 'mapbox://styles/mapbox/light-v9',
-    longitude: -100,
-    latitude: 40.7,
-    zoom: 3,
+    latitude: -25.27,
+    longitude: 133.77,
+    zoom: 2,
     maxZoom: 15,
     pitch: 30,
     bearing: 30,
     layers: []
   });
 
-  updateLayers(
-    data.features.find(f => f.properties.name === 'Los Angeles, CA')
-  );
+	window.deckgl = deckgl
+
+  // updateLayers(
+  //   data.features.find(f => f.properties.name === 'Los Angeles, CA')
+  // );
 
   function updateLayers(selectedFeature) {
     const {flows, centroid} = selectedFeature.properties;

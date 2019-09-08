@@ -12,19 +12,21 @@
     </head>
     <body>
         <div id="main-wrapper" class="wrapper">
-		<div id="header-bar" class="jumbotron text-left">
-		<div class="row" style="padding-left: 5%; padding-right: 5%;">
-			<div class="col-lg-9">
-				<h1 id="header-text"></h1>
-				<p id="geo-text"></p>
-				<p>Catch up on the conversation below!</p>
-			</div>
-	        <div id="deckgl-graph-01" class="row col-lg-3" style="height: 100px"></div>
-		</div>
+    		<div id="header-bar" class="jumbotron text-left">
+        		<div class="row" style="padding-left: 5%; padding-right: 5%;">
+        			<div class="col-lg-9">
+        				<h1 id="header-text"></h1>
+        				<p id="geo-text"></p>
+        				<p>Catch up on the conversation below!</p>
+        			</div>
+        	        <div id="deckgl-graph-01" class="row col-lg-3" style="height: 100px"></div>
+        		</div>
             </div>
-            <div id="main-container">
-                <div id="message-container" class="row col-lg-12">
-                    <div id="empty-message" class="message">-- No messages --</div>
+            <div id="main-container" style="overflow:scroll">
+                <div class="row col-lg-12">
+                    <div id="message-container">
+                        <div id="empty-message" class="message">-- No messages --</div>
+                    </div>
                 </div>
             </div>
             <div id="footer-container">
@@ -59,6 +61,6 @@
 	<!-- optional if mapbox base map is needed -->
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-	<script src="{% static 'chat/deckgl.js' %}"></script>
+	<script src="deckgl.js"></script>
 </body>
 </html>
