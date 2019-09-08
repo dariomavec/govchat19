@@ -1,0 +1,9 @@
+{
+  "name": "xurli5c-rexcdhr",
+  "arn": "arn:aws:iam::318308901556:role/xurli5c-rexcdhr",
+  "service": "lambda.amazonaws.com",
+  "policy": {
+    "arn": "arn:aws:iam::aws:policy/AdministratorAccess"
+  },
+  "region": "us-east-1"
+}

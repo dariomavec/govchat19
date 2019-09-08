@@ -1,0 +1,21 @@
+{
+  "name": "xurli5c-qlxzvjj",
+  "description": "Serverless Socket",
+  "memory": 512,
+  "timeout": 10,
+  "code": "/Users/dariomavec/.serverless/components/registry/npm/@serverless/chat-app@1.0.1/node_modules/@serverless/chat-app/backend",
+  "bucket": "xurli5c-ddorj1",
+  "shims": [
+    "/Users/dariomavec/.serverless/components/registry/npm/@serverless/chat-app@1.0.1/node_modules/@serverless/backend-socket/shim.js"
+  ],
+  "handler": "shim.socket",
+  "runtime": "nodejs10.x",
+  "env": {
+    "dbConnectionsName": "xurli5c-u18ivp"
+  },
+  "role": {
+    "arn": "arn:aws:iam::318308901556:role/xurli5c-rexcdhr"
+  },
+  "arn": "arn:aws:lambda:us-east-1:318308901556:function:xurli5c-qlxzvjj",
+  "region": "us-east-1"
+}

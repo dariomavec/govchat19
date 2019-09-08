@@ -1,0 +1,5 @@
+{
+  "components": {
+    "myChatApp": "/Users/dariomavec/.serverless/components/registry/npm/@serverless/chat-app@1.0.1/node_modules/@serverless/chat-app"
+  }
+}
