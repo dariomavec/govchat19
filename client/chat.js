@@ -1,5 +1,5 @@
 var socket;
-var username = "client-" + Math.floor(Math.random() * 10000);
+var username = ["Jane_C","Sam_P","Timothy_D","Emmanuel_K","Phil_A","Steve_W","Shelley_S","Kate_M"][Math.floor(Math.random() * 8)];
 var pos;
 var room;
 
@@ -20,6 +20,7 @@ function getClosestEntity(position) {
 	.then(res => res.json())
 	.then(data => {
 		console.log(data);
+		window.transportEntity = data;
 		room = data.label;
 		setupWebSocket();
 		deckgl.setProps({
@@ -42,6 +43,8 @@ function setupWebSocket() {
     socket = new ReconnectingWebSocket("wss://7gig8cl05b.execute-api.ap-southeast-2.amazonaws.com/dev");
 
 	  document.getElementById("header-text").innerHTML = "Welcome Aboard " + room + "!"
+		if(transportEntity.dist > 50){document.getElementById("demo-text").innerHTML = "(we can see you're actually ~"+ (transportEntity.dist/1000).toFixed(2) +" km from a supported public transport vehicle, but for demo purposes we've pretended you're on the closest one!)"}
+		document.getElementById("stop-text").innerHTML = "Your next stop is: " + transportEntity.rawData.stopInfo.stop_name + "."
 	  socket.onopen = function(event) {
         data = {"action": "getRecentMessages", "room": room};
         socket.send(JSON.stringify(data));
@@ -63,7 +66,7 @@ function setupWebSocket() {
 						if (window.flag === 1){
 							setTimeout(function(){
 							$("#message-container").append("<div class='message self-message text-center'>-----")
-							$("#message-container").append("<strong><p>Welcome to T-Chat</p><p>It is Sunday 8 September at 07:15am.</p><p>The weather today is expected to be partially cloudy and rising from 2C now (brrr!) to 12C by 3pm. I hope you brought your coat!</p><p>You have joined T-chat as Jane_C</p></strong>")
+							$("#message-container").append("<strong><p>Welcome to T-Chat</p><p>It is Sunday 8 September at 07:15am.</p><p>The weather today is expected to be partially cloudy and rising from 2C now (brrr!) to 12C by 3pm. I hope you brought your coat!</p><p>You have joined T-chat as "+username+"</p></strong>")
 							$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Welcome to T-Chat for the 7:17 am Rapid Service (route 2) to Belconnen, City and Fyshwick.")
 							$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Four of your fellow travellers are using T-Chat right now.")
 							$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Ask me if you have <strong>questions about our route and destinations</strong>, want an update on <strong>transport service delays</strong>, would like a <strong>tour</strong> along the route, or wish to <strong>play a game</strong> against another route. You can <strong>ask me</strong> what else I can help you with.")
@@ -108,6 +111,15 @@ function respondToChat(content){
 		}
 		else if( wordCheck(content,["hello"]) ){
 			postMessageDirect("Hello!", "@driver")
+		}
+		else if( wordCheck(content,["delays"]) ){
+			postMessageDirect("No "+username+", the latest traffic report indicates that the route is <strong>clear and free flowing</strong>, we’ll have you at your destination in a jiffy!", "@driver")
+		}
+		else if( wordCheck(content,["the usual"]) ){
+			postMessageDirect("That’s right " + username +", we have upgraded our buses and your driver today is <strong>Joan</strong>. She has worked as a driver with us for <strong>seven years</strong>.", "@driver")
+		}
+		else if( wordCheck(content,["usual stop"]) ){
+			postMessageDirect("Your usual stop is <strong>City Interchange</strong>. We expect to arrive at <strong>8:22am</strong>, but don't blame me for red lights!", "@driver")
 		}
 		else {
 			postMessageDirect("I'm sorry, I couldn't understand your message. Please use the word 'help' if you would like a human to respond.", "@driver")
