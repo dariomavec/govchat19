@@ -15,6 +15,12 @@ function getRoom() {
   }
 }
 
+var redMarker = L.AwesomeMarkers.icon({
+    prefix: 'fa',
+    icon: 'bus',
+    markerColor: 'red'
+  });
+
 function getClosestEntity(position) {
 	fetch('https://3jaz6s2dul.execute-api.ap-southeast-2.amazonaws.com/dev/whoami?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude)
 	.then(res => res.json())
@@ -25,6 +31,9 @@ function getClosestEntity(position) {
 		setupWebSocket();
 
         map.flyTo([ data.lat, data.lon ], 13);
+        L.marker([ data.lat, data.lon ],
+                      { icon: redMarker })
+             .addTo(map)
 	})
 
   //geotext.innerHTML = "Latitude: " + position.coords.latitude +

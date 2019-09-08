@@ -14,15 +14,19 @@ var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/r
 
 Esri_WorldGrayCanvas.addTo(map)
 
+var greyMarker = L.AwesomeMarkers.icon({
+    prefix: 'fa',
+    icon: 'flag',
+    markerColor: 'gray'
+  });
+
 fetch('https://3jaz6s2dul.execute-api.ap-southeast-2.amazonaws.com/dev/trams')
 .then(res => res.json())
 .then(data => {
         data.forEach((item) => {
-          console.log(item.stopInfo.stop_name)
-
           L.marker([item.stopInfo.stop_lat, item.stopInfo.stop_lon],
-           { title: item.stopInfo.stop_name })
-           .addTo(map)
+          { icon: greyMarker, title: item.stopInfo.stop_name })
+         .addTo(map)
         })
 	})
 
