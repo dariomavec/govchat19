@@ -40,34 +40,34 @@ function setupWebSocket() {
 		document.getElementById("stop-text").innerHTML = "Your next stop is: " + transportEntity.rawData.stopInfo.stop_name + "."
 	  socket.onopen = function(event) {
         data = {"action": "getRecentMessages", "room": room};
-        socket.send(JSON.stringify(data));
+        // socket.send(JSON.stringify(data));
+
+				setTimeout(function(){
+					$("#message-container").append("<div class='message self-message text-center'>-----")
+					$("#message-container").append("<strong><p>Welcome to T-Chat</p><p>It is Sunday 8 September at 07:15am.</p><p>The weather today is expected to be partially cloudy and rising from 2C now (brrr!) to 12C by 3pm. I hope you brought your coat!</p><p>You have joined T-chat as "+username+"</p></strong>")
+				}, 300);
+				setTimeout(function(){
+					$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Welcome to T-Chat for the 7:17 am Rapid Service (route 2) to Belconnen, City and Fyshwick.")
+				}, 800);
+				setTimeout(function(){
+					$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Four of your fellow travellers are using T-Chat right now.")
+				}, 950);
+				setTimeout(function(){
+					$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Ask me if you have <strong>questions about our route and destinations</strong>, want an update on <strong>transport service delays</strong>, would like a <strong>tour</strong> along the route, or wish to <strong>play a game</strong> against another route. You can <strong>ask me</strong> what else I can help you with.")
+					$("#message-container").append("<div class='message self-message text-center'>-----")
+					$("#message-container").children().last()[0].scrollIntoView();
+				}, 1100)
     };
 
 	  socket.onmessage = function(message) {
         var data = JSON.parse(message.data);
 				console.log(data)
         data["messages"].forEach(function(message) {
-            if ($("#message-container").children(0).attr("id") == "empty-message") {
-                $("#message-container").empty();
-								window.flag = 1
-            }
             if (message["username"] === username) {
                 $("#message-container").append("<div class='message self-message'><b>(You)</b> " + message["content"]);
             } else {
                 $("#message-container").append("<div class='message'><b>(" + message["username"] + ")</b> " + message["content"]);
             }
-						if (window.flag === 1){
-							setTimeout(function(){
-							$("#message-container").append("<div class='message self-message text-center'>-----")
-							$("#message-container").append("<strong><p>Welcome to T-Chat</p><p>It is Sunday 8 September at 07:15am.</p><p>The weather today is expected to be partially cloudy and rising from 2C now (brrr!) to 12C by 3pm. I hope you brought your coat!</p><p>You have joined T-chat as "+username+"</p></strong>")
-							$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Welcome to T-Chat for the 7:17 am Rapid Service (route 2) to Belconnen, City and Fyshwick.")
-							$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Four of your fellow travellers are using T-Chat right now.")
-							$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Ask me if you have <strong>questions about our route and destinations</strong>, want an update on <strong>transport service delays</strong>, would like a <strong>tour</strong> along the route, or wish to <strong>play a game</strong> against another route. You can <strong>ask me</strong> what else I can help you with.")
-							$("#message-container").append("<div class='message self-message text-center'>-----")
-							$("#message-container").children().last()[0].scrollIntoView();
-						}, 300)
-							window.flag=0
-						}
             $("#message-container").children().last()[0].scrollIntoView();
         });
     };
