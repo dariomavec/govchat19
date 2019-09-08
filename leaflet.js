@@ -20,6 +20,38 @@ var greyMarker = L.AwesomeMarkers.icon({
     markerColor: 'gray'
   });
 
+var landmarks = [{"LandmarkID": "way/37759005", "coords": [149.0920084, -35.2531368], "type": "hospital", "name": "Calvary Clinic"}
+, {"LandmarkID": "way/37759019", "coords": [149.0901169, -35.2512374], "type": "civic", "name": "Hennessy House"}
+, {"LandmarkID": "way/52333979", "coords": [149.1183914, -35.2804526], "type": "university", "name": "ANU College of Law - Building 7"}]
+
+var hospitalMarker = L.AwesomeMarkers.icon({
+    prefix: 'fa',
+    icon: 'hospital',
+    markerColor: 'blue'
+  });
+
+var uniMarker = L.AwesomeMarkers.icon({
+    prefix: 'fa',
+    icon: 'school',
+    markerColor: 'green'
+  });
+
+landmarks.forEach((item) => {
+   if (item.type == 'hospital') {
+        console.log(item.type);
+      L.marker([item.coords[1], item.coords[0]],
+      { icon: hospitalMarker, zIndex: 100 })
+         .addTo(map);
+   }
+   if (item.type == 'university'){
+        console.log(item.type);
+      L.marker([item.coords[1], item.coords[0]],
+      { icon: uniMarker, zIndex: 100 })
+         .addTo(map);
+   }
+
+})
+
 fetch('https://3jaz6s2dul.execute-api.ap-southeast-2.amazonaws.com/dev/trams')
 .then(res => res.json())
 .then(data => {
