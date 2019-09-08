@@ -42,7 +42,12 @@ def get_qld():
   ret = []
   for entity in d["entity"]:
     if 'vehicle' in entity.keys():
-      ret.append(entity['vehicle'])
+      output = entity['vehicle']
+      if output['stopId'] in STOPS.keys():
+          output['stopInfo'] = STOPS[output['stopId']]
+      else:
+          output['stopInfo'] = []
+      ret.append(output)
   return ret
 
 
@@ -94,7 +99,8 @@ def whoami(event, context):
       "label": v["vehicle"]["label"],
       "lat": v["position"]["latitude"],
       "lon": v["position"]["longitude"],
-      "dist": distance.distance((v["position"]["latitude"], v["position"]["longitude"]), userloc).m
+      "dist": distance.distance((v["position"]["latitude"], v["position"]["longitude"]), userloc).m,
+      "rawData": v
     } for v in gtfsr_vehicles
   ]
 
