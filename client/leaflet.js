@@ -1,13 +1,12 @@
 var map = L.map('map', { zoomControl:false }).setView([-35.4735, 149.0124], 5);
 
-var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
-	subdomains: 'abcd',
-	minZoom: 12,
-	maxZoom: 12,
-	ext: 'png'
+var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	minZoom: 11,
+	maxZoom: 11,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 
-Stamen_Toner.addTo(map)
+OpenStreetMap_Mapnik.addTo(map)
 
 fetch('https://3jaz6s2dul.execute-api.ap-southeast-2.amazonaws.com/dev/trams')
 .then(res => res.json())
