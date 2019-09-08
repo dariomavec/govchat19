@@ -45,18 +45,18 @@ function setupWebSocket() {
 				setTimeout(function(){
 					$("#message-container").append("<div class='message self-message text-center'>-----")
 					$("#message-container").append("<strong><p>Welcome to T-Chat</p><p>It is Sunday 8 September at 07:15am.</p><p>The weather today is expected to be partially cloudy and rising from 2C now (brrr!) to 12C by 3pm. I hope you brought your coat!</p><p>You have joined T-chat as "+username+"</p></strong>")
-				}, 300);
+				}, 6000);
 				setTimeout(function(){
 					$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Welcome to T-Chat for the 7:17 am Rapid Service (route 2) to Belconnen, City and Fyshwick.")
-				}, 800);
+				}, 10000);
 				setTimeout(function(){
 					$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Four of your fellow travellers are using T-Chat right now.")
-				}, 950);
+				}, 14000);
 				setTimeout(function(){
 					$("#message-container").append("<div class='message self-message'><b>(@driver)</b> Ask me if you have <strong>questions about our route and destinations</strong>, want an update on <strong>transport service delays</strong>, would like a <strong>tour</strong> along the route, or wish to <strong>play a game</strong> against another route. You can <strong>ask me</strong> what else I can help you with.")
 					$("#message-container").append("<div class='message self-message text-center'>-----")
 					$("#message-container").children().last()[0].scrollIntoView();
-				}, 1100)
+				}, 17000)
     };
 
 	  socket.onmessage = function(message) {
@@ -90,7 +90,7 @@ function postMessageDirect(content, username) {
 }
 
 function respondToChat(content){
-		if( wordCheck(content,["time","when","long","far"]) ){
+		if( wordCheck(content,["time","long","far"]) ){
 			postMessageDirect("The next stop is 1 minute away", "@driver")
 		}
 		else if( wordCheck(content,["vehicle"]) ){
@@ -108,7 +108,7 @@ function respondToChat(content){
 		else if( wordCheck(content,["delays"]) ){
 			postMessageDirect("No "+username+", the latest traffic report indicates that the route is <strong>clear and free flowing</strong>, we’ll have you at your destination in a jiffy!", "@driver")
 		}
-		else if( wordCheck(content,["the usual"]) ){
+		else if( wordCheck(content,["usual driver"]) ){
 			postMessageDirect("That’s right " + username +", we have upgraded our buses and your driver today is <strong>Joan</strong>. She has worked as a driver with us for <strong>seven years</strong>.", "@driver")
 		}
 		else if( wordCheck(content,["usual stop"]) ){
