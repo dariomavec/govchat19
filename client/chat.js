@@ -24,7 +24,7 @@ function getClosestEntity(position) {
 		room = data.label;
 		setupWebSocket();
 
-        map.flyTo([ position.coords.latitude, position.coords.longitude ], 13);
+        map.flyTo([ data.lat, data.lon ], 13);
 	})
 
   //geotext.innerHTML = "Latitude: " + position.coords.latitude +
