@@ -95,14 +95,19 @@ def whoami(event, context):
 
   gtfsr_vehicles = trams + qld
 
-  gtfsr_locs = [{
-      "label": v["vehicle"]["label"],
-      "lat": v["position"]["latitude"],
-      "lon": v["position"]["longitude"],
-      "dist": distance.distance((v["position"]["latitude"], v["position"]["longitude"]), userloc).m,
-      "rawData": v
-    } for v in gtfsr_vehicles
-  ]
+  gtfsr_locs = []
+
+  for v in gtfsr_vehicles:
+    try:
+      gtfsr_locs.append({
+          "label": v["vehicle"]["label"],
+          "lat": v["position"]["latitude"],
+          "lon": v["position"]["longitude"],
+          "dist": distance.distance((v["position"]["latitude"], v["position"]["longitude"]), userloc).m,
+          "rawData": v
+        })
+    except Exception:
+      pass
 
   locs = gtfsr_locs # may add non-gtfsr feeds in future
 
