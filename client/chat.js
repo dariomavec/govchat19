@@ -22,15 +22,8 @@ function getClosestEntity(position) {
 		console.log(data);
 		room = data.label;
 		setupWebSocket();
-		deckgl.setProps({
-          viewState: {
-            longitude: position.coords.longitude,
-            latitude: position.coords.latitude,
-						zoom: 13,
-            transitionInterpolator: new FlyToInterpolator(),
-            transitionDuration: 5000
-          }
-        })
+
+        map.panTo([ position.coords.latitude, position.coords.longitude ]);
 	})
 
   //geotext.innerHTML = "Latitude: " + position.coords.latitude +
