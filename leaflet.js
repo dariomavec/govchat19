@@ -25,7 +25,7 @@ fetch('https://3jaz6s2dul.execute-api.ap-southeast-2.amazonaws.com/dev/trams')
 .then(data => {
         data.forEach((item) => {
           L.marker([item.stopInfo.stop_lat, item.stopInfo.stop_lon],
-          { icon: greyMarker, title: item.stopInfo.stop_name })
+          { icon: greyMarker, title: item.stopInfo.stop_name, zIndex: 100 })
          .addTo(map)
         })
 	})

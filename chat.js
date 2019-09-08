@@ -32,7 +32,7 @@ function getClosestEntity(position) {
 
         map.flyTo([ data.lat, data.lon ], 13);
         L.marker([ data.lat, data.lon ],
-                      { icon: redMarker })
+                      { icon: redMarker, zIndex: 1000 })
              .addTo(map)
 	})
 
