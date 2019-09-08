@@ -1,9 +1,0 @@
-{
-  "region": "us-east-1",
-  "url": "wss://ovpfh62l49.execute-api.us-east-1.amazonaws.com/dev/",
-  "routes": [
-    "$connect",
-    "$disconnect",
-    "$default"
-  ]
-}
