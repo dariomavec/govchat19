@@ -108,7 +108,7 @@ function respondToChat(content){
 		else if( wordCheck(content,["delays"]) ){
 			postMessageDirect("No "+username+", the latest traffic report indicates that the route is <strong>clear and free flowing</strong>, we’ll have you at your destination in a jiffy!", "@driver")
 		}
-		else if( wordCheck(content,["the usual"]) ){
+		else if( wordCheck(content,["usual driver"]) ){
 			postMessageDirect("That’s right " + username +", we have upgraded our buses and your driver today is <strong>Joan</strong>. She has worked as a driver with us for <strong>seven years</strong>.", "@driver")
 		}
 		else if( wordCheck(content,["usual stop"]) ){
